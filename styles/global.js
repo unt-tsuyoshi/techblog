@@ -175,91 +175,16 @@ export const globalStyle = css`
     vertical-align: top;
   }
 
-  /* ------------------------
-  function
------------------------- */
-
-  @function breakpoint-next($name, $breakpoint-names: map-keys($breakpoints)) {
-    $n: index($breakpoint-names, $name);
-    @return if(
-      $n < length($breakpoint-names),
-      nth($breakpoint-names, $n + 1),
-      null
-    );
-  }
-
-  @function breakpoint-min($name) {
-    $min: map.get($breakpoints, $name);
-    @return if($min != 0, $min, null);
-  }
-
-  // 現在（2018/5/13）のSafariのバグにより0.01pxではなく0.02pxを使用する。
-  // https://bugs.webkit.org/show_bug.cgi?id=178261
-  @function breakpoint-max($name) {
-    $next: breakpoint-next($name);
-    @return if($next, breakpoint-min($next) - 0.02px, null);
+  a {
+    text-decoration: none;
+    color: #000;
   }
 
   /* ------------------------
-mixin
+base
 ------------------------ */
-  @mixin breakpoint-up($name) {
-    $min: breakpoint-min($name);
-    @if $min {
-      @media (min-width: $min) {
-        @content;
-      }
-    } @else {
-      @content;
-    }
-  }
 
-  @mixin breakpoint-down($name) {
-    $max: breakpoint-max($name);
-    @if $max {
-      @media (max-width: $max) {
-        @content;
-      }
-    } @else {
-      @content;
-    }
-  }
-
-  @mixin breakpoint-between($lower, $upper) {
-    $min: breakpoint-min($lower);
-    $max: breakpoint-max($upper);
-
-    @if $min != null and $max != null {
-      @media (min-width: $min) and (max-width: $max) {
-        @content;
-      }
-    } @else if $max == null {
-      @include breakpoint-up($lower) {
-        @content;
-      }
-    } @else if $min == null {
-      @include breakpoint-down($upper) {
-        @content;
-      }
-    }
-  }
-
-  @mixin breakpoint-only($name) {
-    $min: breakpoint-min($name);
-    $max: breakpoint-max($name);
-
-    @if $min != null and $max !=null {
-      @media (min-width: $min) and (max-width: $max) {
-        @content;
-      }
-    } @else if $max == null {
-      @include breakpoint-up($name) {
-        @content;
-      }
-    } @else if $min == null {
-      @include breakpoint-down($name) {
-        @content;
-      }
-    }
+  body {
+    background-color: #f7f5f2;
   }
 `;

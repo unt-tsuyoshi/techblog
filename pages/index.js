@@ -4,20 +4,30 @@ import { client } from '../libs/client';
 import { css } from '@emotion/react';
 import dayjs, { locale, extend } from 'dayjs';
 import 'dayjs/locale/ja';
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { breakpointUp, breakpoints } from '../styles/mq';
+import { Header } from '../components/Header';
 
 export default function Home({ blog }) {
   return (
     <>
+      <Header />
       <ul css={list}>
         {blog.map((blog) => (
           <li key={blog.id} css={list_item}>
             <Link href={`/blog/${blog.id}`}>
-              <a>{blog.title}</a>
+              <a>
+                <div css={list_item_inner}>
+                  <h2 css={blog_title}>{blog.title}</h2>
+                  <div css={blog_info}>
+                    <p css={blog_category}>Zenn</p>
+                    <p css={blog_publishDate}>
+                      {calcDateDiff(blog.publishedAt)}
+                    </p>
+                  </div>
+                </div>
+              </a>
             </Link>
-            <p>{calcDateDiff(blog.publishedAt)}</p>
           </li>
         ))}
       </ul>
@@ -39,26 +49,60 @@ export const getStaticProps = async () => {
 //公開日と現在の日付の差分を計算
 const calcDateDiff = (publishedDate) => {
   locale('ja');
-  extend(utc);
-  extend(timezone);
   extend(relativeTime);
-
-  const formatedDate = dayjs
-    .utc(publishedDate)
-    .tz('Asia/Tokyo')
-    .format('YYYY-MM-DD');
-  const datediff = dayjs(formatedDate).fromNow();
+  const datediff = dayjs(publishedDate).fromNow();
   return datediff;
 };
 
+//css props
 const list = css`
-  display: flex;
-  justify-content: space-between;
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 1280px;
+  padding: 0 15px;
+  margin: 60px auto 0;
+  ${breakpointUp('md')} {
+    display: grid;
+    grid-template-areas: 'one two three';
+    gap: 50px 40px;
+  }
 `;
 
 const list_item = css`
-  padding: 30px;
-  background-color: red;
+  background-color: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  border-radius: 20px;
+
+  ${breakpointUp('md')} {
+    width: math.div(100%, 3);
+  }
+
+  &:not(:first-child) {
+    margin-top: 30px;
+
+    ${breakpointUp('md')} {
+      margin-top: 0;
+    }
+  }
+`;
+
+const list_item_inner = css`
+  padding: 40px 20px 15px;
+`;
+
+const blog_title = css`
+  font-size: 1.5rem;
+  font-weight: bold;
+`;
+
+const blog_info = css`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 55px;
+`;
+
+const blog_publishDate = css`
+  font-size: 1rem;
+`;
+
+const blog_category = css`
+  font-size: 1rem;
 `;
