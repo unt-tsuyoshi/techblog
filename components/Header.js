@@ -1,12 +1,17 @@
 import { css } from '@emotion/react';
 import { breakpointUp, breakpoints } from '../styles/mq';
+import Link from 'next/link';
 
 export const Header = () => {
   return (
     <>
       <header css={headerCss}>
         <div css={headerInnerCss}>
-          <h1 css={headerLogoCss}>Techblog</h1>
+          <Link href="/">
+            <a>
+              <h1 css={headerLogoCss}>Techblog</h1>
+            </a>
+          </Link>
           <button type="button" css={humburgerCss}>
             <span css={humburgerLineCss}></span>
             <span css={humburgerLineCss}></span>
@@ -24,6 +29,11 @@ const headerCss = css`
 const headerLogoCss = css`
   font-size: 20px;
   font-weight: normal;
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 `;
 
 const headerInnerCss = css`

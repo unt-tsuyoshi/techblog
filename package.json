@@ -11,14 +11,15 @@
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
-    "dayjs": "^1.11.1",
     "microcms-js-sdk": "^2.0.0",
     "next": "12.1.2",
-    "react": "18.0.0",
+    "react": "^18.0.0",
     "react-dom": "18.0.0"
   },
   "devDependencies": {
+    "dayjs": "^1.11.2",
     "eslint": "8.12.0",
-    "eslint-config-next": "12.1.2"
+    "eslint-config-next": "12.1.2",
+    "highlight.js": "^11.5.1"
   }
 }

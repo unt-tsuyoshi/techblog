@@ -7,30 +7,33 @@ import 'dayjs/locale/ja';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { breakpointUp, breakpoints } from '../styles/mq';
 import { Header } from '../components/Header';
+import { Layout } from '../components/Layout';
 
 export default function Home({ blog }) {
   return (
     <>
       <Header />
-      <ul css={list}>
-        {blog.map((blog) => (
-          <li key={blog.id} css={list_item}>
-            <Link href={`/blog/${blog.id}`}>
-              <a>
-                <div css={list_item_inner}>
-                  <h2 css={blog_title}>{blog.title}</h2>
-                  <div css={blog_info}>
-                    <p css={blog_category}>Zenn</p>
-                    <p css={blog_publishDate}>
-                      {calcDateDiff(blog.publishedAt)}
-                    </p>
+      <Layout>
+        <ul css={list}>
+          {blog.map((blog) => (
+            <li key={blog.id} css={list_item}>
+              <Link href={`/blog/${blog.id}`}>
+                <a>
+                  <div css={list_item_inner}>
+                    <h2 css={blog_title}>{blog.title}</h2>
+                    <div css={blog_info}>
+                      <p css={blog_category}>Zenn</p>
+                      <p css={blog_publishDate}>
+                        {calcDateDiff(blog.publishedAt)}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+                </a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Layout>
     </>
   );
 }
@@ -57,11 +60,10 @@ const calcDateDiff = (publishedDate) => {
 //css props
 const list = css`
   max-width: 1280px;
-  padding: 0 15px;
-  margin: 60px auto 0;
+  margin: 0 auto;
   ${breakpointUp('md')} {
-    display: grid;
-    grid-template-areas: 'one two three';
+    display: flex;
+    flex-wrap: wrap;
     gap: 50px 40px;
   }
 `;
@@ -72,14 +74,20 @@ const list_item = css`
   border-radius: 20px;
 
   ${breakpointUp('md')} {
-    width: math.div(100%, 3);
+    width: calc((100% - 80px) / 3);
   }
 
-  &:not(:first-child) {
+  &:not(:first-of-type) {
     margin-top: 30px;
 
     ${breakpointUp('md')} {
       margin-top: 0;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.7;
     }
   }
 `;
@@ -89,6 +97,7 @@ const list_item_inner = css`
 `;
 
 const blog_title = css`
+  height: 100%;
   font-size: 1.5rem;
   font-weight: bold;
 `;
