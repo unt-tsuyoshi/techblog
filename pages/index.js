@@ -75,6 +75,7 @@ const list_item = css`
 
   ${breakpointUp('md')} {
     width: calc((100% - 80px) / 3);
+    /* height: 180px; */
   }
 
   &:not(:first-of-type) {
@@ -94,11 +95,17 @@ const list_item = css`
 
 const list_item_inner = css`
   padding: 40px 20px 15px;
+  ${breakpointUp('md')} {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
 `;
 
 const blog_title = css`
   height: 100%;
-  font-size: 1.5rem;
+  font-size: 20px;
   font-weight: bold;
 `;
 
@@ -109,9 +116,9 @@ const blog_info = css`
 `;
 
 const blog_publishDate = css`
-  font-size: 1rem;
+  font-size: 14px;
 `;
 
 const blog_category = css`
-  font-size: 1rem;
+  font-size: 14px;
 `;
