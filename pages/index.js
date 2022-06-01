@@ -10,22 +10,22 @@ import { Header } from '../components/Header';
 import { Layout } from '../components/Layout';
 import { getQiitaPosts } from '../libs/qiita';
 
-export default function Home({ blog, qiita }) {
+export default function Home({ techblog, qiita }) {
   return (
     <>
       <Header />
       <Layout>
         <ul css={list}>
-          {blog.map((blog) => (
-            <li key={blog.id} css={list_item}>
-              <Link href={`/blog/${blog.id}`}>
+          {techblog.map((techblog) => (
+            <li key={techblog.id} css={list_item}>
+              <Link href={`/blog/${techblog.id}`}>
                 <a>
                   <div css={list_item_inner}>
-                    <h2 css={blog_title}>{blog.title}</h2>
+                    <h2 css={blog_title}>{techblog.title}</h2>
                     <div css={blog_info}>
                       <p css={blog_category}>techblog</p>
                       <p css={blog_publishDate}>
-                        {calcDateDiff(blog.publishedAt)}
+                        {calcDateDiff(techblog.publishedAt)}
                       </p>
                     </div>
                   </div>
@@ -60,7 +60,7 @@ export const getStaticProps = async () => {
   const qiita = await getQiitaPosts();
   return {
     props: {
-      blog: data.contents,
+      techblog: data.contents,
       qiita: qiita,
     },
   };
