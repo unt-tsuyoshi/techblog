@@ -57,10 +57,10 @@ const humburgerLineCss = css`
   left: 50%;
   transform: translateX(-50%);
   background-color: #000;
-  &:nth-child(1) {
+  &:nth-of-type(1) {
     top: 16px;
   }
-  &:nth-child(2) {
+  &:nth-of-type(2) {
     top: 28px;
   }
 `;

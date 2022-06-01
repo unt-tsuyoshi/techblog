@@ -22,7 +22,7 @@ export default function Home({ blog }) {
                   <div css={list_item_inner}>
                     <h2 css={blog_title}>{blog.title}</h2>
                     <div css={blog_info}>
-                      <p css={blog_category}>Zenn</p>
+                      <p css={blog_category}>techblog</p>
                       <p css={blog_publishDate}>
                         {calcDateDiff(blog.publishedAt)}
                       </p>
@@ -104,6 +104,10 @@ const list_item_inner = css`
 `;
 
 const blog_title = css`
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
   height: 100%;
   font-size: 20px;
   font-weight: bold;
@@ -112,7 +116,10 @@ const blog_title = css`
 const blog_info = css`
   display: flex;
   justify-content: space-between;
-  margin-top: 55px;
+  margin-top: 30px;
+  ${breakpointUp('md')} {
+    margin-top: 55px;
+  }
 `;
 
 const blog_publishDate = css`
