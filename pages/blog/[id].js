@@ -88,6 +88,7 @@ const blog_post = css`
   }
 
   & > p {
+    font-size: 16px;
     line-height: 1.5;
   }
 

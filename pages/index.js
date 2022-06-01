@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import dayjs, { locale, extend } from 'dayjs';
 import 'dayjs/locale/ja';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { breakpointUp, breakpoints } from '../styles/mq';
+import { breakpointUp } from '../styles/mq';
 import { Header } from '../components/Header';
 import { Layout } from '../components/Layout';
 

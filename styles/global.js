@@ -7,6 +7,7 @@ export const globalStyle = css`
   html,
   body {
     height: 100%;
+    font-family: 'Noto Sans JP', sans-serif;
   }
 
   *,
