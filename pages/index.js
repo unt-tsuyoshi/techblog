@@ -8,8 +8,9 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import { breakpointUp } from '../styles/mq';
 import { Header } from '../components/Header';
 import { Layout } from '../components/Layout';
+import { getQiitaPosts } from '../libs/qiita';
 
-export default function Home({ blog }) {
+export default function Home({ blog, qiita }) {
   return (
     <>
       <Header />
@@ -32,6 +33,21 @@ export default function Home({ blog }) {
               </Link>
             </li>
           ))}
+          {qiita.map((qiita) => (
+            <li key={qiita.id} css={list_item}>
+              <a href={qiita.url} target="_blank" rel="noopener noreferrer">
+                <div css={list_item_inner}>
+                  <h2 css={blog_title}>{qiita.title}</h2>
+                  <div css={blog_info}>
+                    <p css={blog_category}>Qiita</p>
+                    <p css={blog_publishDate}>
+                      {calcDateDiff(qiita.created_at)}
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+          ))}
         </ul>
       </Layout>
     </>
@@ -41,10 +57,11 @@ export default function Home({ blog }) {
 // データをテンプレートに受け渡す部分の処理を記述します
 export const getStaticProps = async () => {
   const data = await client.get({ endpoint: 'blog' });
-
+  const qiita = await getQiitaPosts();
   return {
     props: {
       blog: data.contents,
+      qiita: qiita,
     },
   };
 };

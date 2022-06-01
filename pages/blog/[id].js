@@ -92,7 +92,8 @@ const blog_post = css`
     line-height: 1.5;
   }
 
-  & > h2 + p {
+  & > h2 + p,
+  & > h2 + pre {
     margin-top: 1.5em;
   }
 
@@ -100,6 +101,10 @@ const blog_post = css`
     counter-reset: lineNum;
     margin: 1em 0;
     font-size: 16px;
+  }
+
+  & > img {
+    margin: 1em 0;
   }
 
   & > pre span.row-number {
