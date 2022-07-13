@@ -11,8 +11,8 @@ export function Layout({ children, ...props }) {
 }
 
 const layout = css`
-  padding: 60px 16px 0;
+  padding: 60px 16px;
   ${breakpointUp('md')} {
-    padding: 60px 32px 0;
+    padding: 60px 32px;
   }
 `;

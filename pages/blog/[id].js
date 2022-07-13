@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { client } from '../../libs/client';
 import { css } from '@emotion/react';
 import { breakpointUp, breakpoints } from '../../styles/mq';
@@ -10,7 +11,7 @@ import 'highlight.js/styles/atom-one-dark.css';
 
 export default function BlogId({ blog }) {
   useEffect(() => {
-    hljs.initHighlighting();
+    hljs.highlightAll();
     hljs.addPlugin({
       'after:highlightElement': ({ el, result }) => {
         el.innerHTML = result.value.replace(
@@ -18,8 +19,7 @@ export default function BlogId({ blog }) {
           '<span class="row-number"></span>'
         );
       },
-    }); // React環境だと初回以降ハイライト処理が入らないため外部からフラグをfalseに
-    hljs.initHighlighting.called = false;
+    });
   });
   return (
     <>
@@ -34,6 +34,11 @@ export default function BlogId({ blog }) {
               __html: `${blog.body}`,
             }}
           />
+          <div css={blog_btn}>
+            <Link href={'/'}>
+              <a css={blog_link}>一覧に戻る</a>
+            </Link>
+          </div>
         </main>
       </Layout>
     </>
@@ -85,6 +90,12 @@ const blog_post = css`
     border-bottom: 1px solid #707070;
     padding-bottom: 8px;
     margin-top: 50px;
+  }
+
+  & > h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
   }
 
   & > p {
@@ -142,4 +153,18 @@ const blog_post = css`
 const blog_content = css`
   max-width: 900px;
   margin: 0 auto;
+`;
+
+const blog_btn = css`
+  margin-top: 40px;
+`;
+
+const blog_link = css`
+  cursor: pointer;
+  border-bottom: 1px solid #333;
+  @media (hover: hover) {
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 `;

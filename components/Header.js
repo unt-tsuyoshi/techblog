@@ -9,13 +9,9 @@ export const Header = () => {
         <div css={headerInnerCss}>
           <Link href="/">
             <a>
-              <h1 css={headerLogoCss}>Techblog</h1>
+              <h1 css={headerLogoCss}>console.blog</h1>
             </a>
           </Link>
-          <button type="button" css={humburgerCss}>
-            <span css={humburgerLineCss}></span>
-            <span css={humburgerLineCss}></span>
-          </button>
         </div>
       </header>
     </>
@@ -27,7 +23,7 @@ const headerCss = css`
 `;
 
 const headerLogoCss = css`
-  font-size: 20px;
+  font-size: 24px;
   font-weight: normal;
   @media (hover: hover) {
     &:hover {
@@ -39,28 +35,7 @@ const headerLogoCss = css`
 const headerInnerCss = css`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   height: 100%;
   padding-inline: 15px 7px;
-`;
-
-const humburgerCss = css`
-  position: relative;
-  width: 45px;
-  height: 45px;
-`;
-
-const humburgerLineCss = css`
-  position: absolute;
-  width: 30px;
-  height: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #000;
-  &:nth-of-type(1) {
-    top: 16px;
-  }
-  &:nth-of-type(2) {
-    top: 28px;
-  }
 `;

@@ -8,6 +8,7 @@ export const globalStyle = css`
   body {
     height: 100%;
     font-family: 'Noto Sans JP', sans-serif;
+    color: #333;
   }
 
   *,

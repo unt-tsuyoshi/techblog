@@ -11,6 +11,7 @@ import { Layout } from '../components/Layout';
 import { getQiitaPosts } from '../libs/qiita';
 
 export default function Home({ techblog, qiita }) {
+  const blogs = techblog.concat(qiita);
   return (
     <>
       <Header />
@@ -23,7 +24,7 @@ export default function Home({ techblog, qiita }) {
                   <div css={list_item_inner}>
                     <h2 css={blog_title}>{techblog.title}</h2>
                     <div css={blog_info}>
-                      <p css={blog_category}>techblog</p>
+                      <p css={blog_category}>console.blog</p>
                       <p css={blog_publishDate}>
                         {calcDateDiff(techblog.publishedAt)}
                       </p>
@@ -76,7 +77,7 @@ const calcDateDiff = (publishedDate) => {
 
 //css props
 const list = css`
-  max-width: 1280px;
+  max-width: 900px;
   margin: 0 auto;
   ${breakpointUp('md')} {
     display: flex;
@@ -91,7 +92,7 @@ const list_item = css`
   border-radius: 20px;
 
   ${breakpointUp('md')} {
-    width: calc((100% - 80px) / 3);
+    width: calc((100% - 40px) / 2);
     /* height: 180px; */
   }
 
