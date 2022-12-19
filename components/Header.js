@@ -9,7 +9,7 @@ export const Header = () => {
         <div css={headerInnerCss}>
           <Link href="/">
             <a>
-              <h1 css={headerLogoCss}>console.blog</h1>
+              <h1 css={headerLogoCss}>techblog</h1>
             </a>
           </Link>
         </div>

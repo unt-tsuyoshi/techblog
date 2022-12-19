@@ -24,7 +24,7 @@ export default function Home({ techblog, qiita }) {
                   <div css={list_item_inner}>
                     <h2 css={blog_title}>{techblog.title}</h2>
                     <div css={blog_info}>
-                      <p css={blog_category}>console.blog</p>
+                      <p css={blog_category}>techblog</p>
                       <p css={blog_publishDate}>
                         {calcDateDiff(techblog.publishedAt)}
                       </p>
